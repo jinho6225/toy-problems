@@ -27,3 +27,22 @@ function fibonacciRecursive(n) {
   return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
 }
 fibonacciRecursive(6);
+
+//memoization
+var fib = function (N) {
+  let map = {};
+  return (function fibo(n) {
+    if (n in map) {
+      return map[n];
+    } else {
+      if (n === 0) {
+        return n;
+      } else if (n === 1) {
+        return n;
+      } else if (n >= 2) {
+        map[n] = fibo(n - 1) + fibo(n - 2);
+        return map[n];
+      }
+    }
+  })(N);
+};
