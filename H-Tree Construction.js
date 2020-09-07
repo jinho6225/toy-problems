@@ -28,15 +28,15 @@ function drawLine(x0, y0, x1, y1) {
     console.log(`ending point: x: ${x1} y: ${y1}`)
   }
   function drawHTree(x, y, length, depth) {
-    if (depth === 0) return
     let halfLength = length / 2 
-  
-    if (depth === 1) {
-       drawLine(x - halfLength, 0, x + halfLength, 0)
-       drawLine(x - halfLength, y + halfLength, x - halfLength, y - halfLength)
-       drawLine(x + halfLength, y + halfLength, x + halfLength, y - halfLength)
+    drawLine(x - halfLength, y, x + halfLength, y)
+    drawLine(x - halfLength, y + halfLength, x - halfLength, y - halfLength)
+    drawLine(x + halfLength, y + halfLength, x + halfLength, y - halfLength)
+    
+    length = length / Math.sqrt(2)
+    if (depth === 0) {
+      return
     } else if (depth > 1) {
-      length = length / Math.sqrt(2)
       drawHTree(x - halfLength, y + halfLength, length, depth-1)
       drawHTree(x - halfLength, y - halfLength, length, depth-1)
       drawHTree(x + halfLength, y + halfLength, length, depth-1)
