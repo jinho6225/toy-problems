@@ -40,11 +40,20 @@ function findArrayQuadruplet(arr, s) {
         for (let j = i+1; j < arr.length; j++) {
             for (let k = j+1; k < arr.length; k++) {
                 let totalOfThree = arr[i]+arr[j]+arr[k]
+                map.set(arr[i], map.get(arr[i])-1)
+                map.set(arr[j], map.get(arr[j])-1)
+                map.set(arr[k], map.get(arr[k])-1)
                 let diff = s - totalOfThree // 9
-                if (arr[i] !== diff && arr[j] !== diff && arr[k] !== diff && map.has(diff)) {
+                if (map.get(diff) > 0 && map.has(diff)) {
                     result.push([arr[i],arr[j],arr[k],diff])
+                    map.set(arr[i], map.get(arr[i])+1)
+                    map.set(arr[j], map.get(arr[j])+1)
+                    map.set(arr[k], map.get(arr[k])+1)
                     break;
-                } 
+                }
+                map.set(arr[i], map.get(arr[i])+1)
+                map.set(arr[j], map.get(arr[j])+1)
+                map.set(arr[k], map.get(arr[k])+1)
             }
         } 
     }
@@ -53,6 +62,8 @@ function findArrayQuadruplet(arr, s) {
     }
     return result[0]
 }
+
+console.log(findArrayQuadruplet([4,4,4,4,5], 16))
 
 
 //O(n^4) =< O(n^3)
