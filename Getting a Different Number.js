@@ -72,3 +72,22 @@ function getDifferentNumber(arr) {
     return 0
   
   */
+
+
+//another solution added
+
+function getDifferentNumber(arr) {
+    // your code goes here
+    let len = arr.length
+    if (!len) return 0
+    arr.sort((a,b) => a-b)
+    for (let i = 0; i < len; i++) {
+      if (arr[i] !== i) {
+        return i
+      }
+    }
+    let maxInt = Math.pow(2,31) - 1
+    if ((arr[arr.length-1] + 1) < maxInt) {
+      return arr[arr.length-1] + 1  
+    }
+  }
