@@ -75,7 +75,7 @@ function getDifferentNumber(arr) {
 
 
 //another solution added
-
+//O(n log n) // O(n)
 function getDifferentNumber(arr) {
     // your code goes here
     let len = arr.length
@@ -90,4 +90,20 @@ function getDifferentNumber(arr) {
     if ((arr[arr.length-1] + 1) < maxInt) {
       return arr[arr.length-1] + 1  
     }
+  }
+
+  //O(n) // O(n)
+  function getDifferentNumber(arr) {
+    // your code goes here
+    let len = arr.length
+    let mySet = new Set()
+    for (let i = 0; i < len; i++) {
+      mySet.add(arr[i])
+    }
+    for (let j = 0; j < len; j++) {
+      if (mySet.has(j) === false) {
+        return j
+      }
+    }
+    return len
   }
