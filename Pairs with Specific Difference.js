@@ -24,7 +24,6 @@ function findPairsWithGivenDifference(arr, k) {
   for (let i = 0; i < arr.length; i++) {
     hash[arr[i]] = i;
   }
-  console.log(hash);
   for (let i = 0; i < arr.length; i++) {
     let diff = arr[i] - k;
     if (hash.hasOwnProperty(diff)) {
@@ -40,3 +39,35 @@ function findPairsWithGivenDifference(arr, k) {
 let arr = [0, -1, -2, 2, 1],
   k = 1;
 console.log(findPairsWithGivenDifference(arr, k));
+
+//readable solution added
+function findPairsWithGivenDifference(arr, k) {
+    // your code goes here
+    if (k === 0) {
+      return []
+    }
+    let array = []
+    let hash = {}
+    for (let i = 0; i < arr.length; i++) {
+      hash[arr[i] - k] = arr[i]
+      console.log(hash)
+    }
+  
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] in hash) {
+        array.push([hash[arr[i]], arr[i]])
+      }
+    }
+    return array
+  }
+  let arr = [0, -1, -2, 2, 1], k = 1
+  console.log(findPairsWithGivenDifference(arr, k))
+  //Jin-ho
+  
+  
+  /*
+  x - y = k
+  x - k = y
+  key = value
+  
+  */
