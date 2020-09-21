@@ -52,3 +52,24 @@ iterate hash and checking there are value is 2
 
 var onlyEven = evenOccurrence([1, 7, 2, 5, 8, 9, 6, 4]);
 console.log(onlyEven);
+
+
+//another solution
+var evenOccurrence = function(arr) {
+  // Your code here.
+	let map = {}
+	let fast = Infinity
+		for (let i = 0; i < arr.length; i++) {
+			if (map.hasOwnProperty(arr[i]) === false) {
+				map[arr[i]] = 1			
+			} else {
+				map[arr[i]] += 1
+		}
+	}
+	for (let i = 0; i < arr.length; i++) {
+		if (map[arr[i]] === 2) {
+			return arr[i]
+		}
+	}
+	return null
+};
