@@ -58,7 +58,6 @@ console.log(onlyEven);
 var evenOccurrence = function(arr) {
   // Your code here.
 	let map = {}
-	let fast = Infinity
 		for (let i = 0; i < arr.length; i++) {
 			if (map.hasOwnProperty(arr[i]) === false) {
 				map[arr[i]] = 1			
