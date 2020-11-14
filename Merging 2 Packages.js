@@ -29,4 +29,19 @@ function getIndicesOfItemWeights(arr, limit) {
   }
   
    // arr = [4,4,9] lim = 8
-  
+
+
+// 11/13/2020
+function getIndicesOfItemWeights(arr, limit) {
+  // your code goes here
+  let obj = {}
+  for (let i = 0; i < arr.length; i++) {
+    if (obj.hasOwnProperty(limit - arr[i])) {
+      let diff = limit-arr[i]
+      return [i, obj[diff]]
+    } else {
+      obj[arr[i]] = i
+    }
+  }
+  return []
+}
