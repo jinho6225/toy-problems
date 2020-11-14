@@ -35,6 +35,39 @@ function calcDroneMinEnergy(route) {function calcDroneMinEnergy(route) {
       }
     }
     return needEnergy 
+}
+  
+
+
+
+//  11/13/2020
+function calcDroneMinEnergy(route) {
+  // your code goes here
+  let needEnergy = 0
+  let tank = 0
+  for (let i = 0; i < route.length-1; i++) {
+    if (route[i][2] - route[i+1][2] >= 0) {
+      tank += route[i][2] - route[i+1][2]
+    } else {
+      tank += (route[i][2] - route[i+1][2])
+      if (tank < 0) {
+        needEnergy += tank
+        tank = 0  
+      }
+    }
   }
-  
-  
+  return needEnergy < 0 ? -needEnergy : needEnergy
+}
+
+// the more elegant solution
+
+function calcDroneMinEnergy(route) {
+  // your code goes here
+  let maxHeight = route[0][2]
+  for (let i = 1; i < route.length; i++) {
+    if (route[i][2] > maxHeight) {
+      maxHeight = route[i][2]
+    }
+  }
+  return maxHeight - route[0][2]
+}
