@@ -20,7 +20,6 @@ Constraints:
 [output] integer
 */
 function calcDroneMinEnergy(route) {function calcDroneMinEnergy(route) {
-
     let initEnergy = 0
     let needEnergy = 0
     for (let i = 0; i < route.length-1; i++) {
@@ -38,11 +37,8 @@ function calcDroneMinEnergy(route) {function calcDroneMinEnergy(route) {
 }
   
 
-
-
 //  11/13/2020
 function calcDroneMinEnergy(route) {
-  // your code goes here
   let needEnergy = 0
   let tank = 0
   for (let i = 0; i < route.length-1; i++) {

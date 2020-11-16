@@ -48,3 +48,6 @@ function isToeplitz(arr) {
   }
   return true
 }
+
+
+
