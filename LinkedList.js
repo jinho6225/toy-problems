@@ -91,13 +91,20 @@ class LinkedList {
         }
         return currentNode;
     }
+    remove (index) {
+        const leader = this.traverseToIndex(index-1)
+        leader.next = leader.next.next
+        this.length--;
+    }
 }
 const myLinkedList = new LinkedList(10)
 myLinkedList.append(5)
 myLinkedList.append(16)
 myLinkedList.prepend(1)
-console.log(myLinkedList.printList())
 myLinkedList.insert(2, 99)
+myLinkedList.insert(20, 199)
+console.log(myLinkedList.printList())
+myLinkedList.remove(3)
 console.log(myLinkedList.printList())
 
 console.log(myLinkedList)
