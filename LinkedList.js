@@ -57,21 +57,39 @@ class LinkedList {
     }
     insert(index, value){
         //Code here
-        let node = new Node(value)
-        let cur = this.head
-        let prev = null
-        let i = 1
-        while (cur) {
-            if (index === i) {
-                prev.next = node
-                node.next = cur
-                break;
-            }
-            prev = cur
-            cur = cur.next
-            i++
+        if (index >= this.length) {
+            return this.append(value)
         }
+        let newNode = new Node(value)
+        const leader = this.traverseToIndex(index-1)
+        const holdingPointer = leader.next
+        leader.next = newNode;
+        newNode.next = holdingPointer;
+        this.length++
+        return this.printList()
+        // let cur = this.head
+        // let prev = null
+        // let i = 0
+        // while (cur) {
+        //     if (index === i) {
+        //         prev.next = newNode
+        //         newNode.next = cur
+        //         break;
+        //     }
+        //     prev = cur
+        //     cur = cur.next
+        //     i++
+        // }
         return this.printList();
+    }
+    traverseToIndex(index) {
+        let counter = 0;
+        let currentNode = this.head;
+        while (counter !== index) {
+            currentNode = currentNode.next;
+            counter++;
+        }
+        return currentNode;
     }
 }
 const myLinkedList = new LinkedList(10)
