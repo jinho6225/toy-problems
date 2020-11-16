@@ -96,19 +96,26 @@ class LinkedList {
         leader.next = leader.next.next
         this.length--;
     }
+
+    reverse() {
+        //Code Here
+        let cur = this.head
+        let prev = null
+        while (cur) {
+            let tmp = cur.next
+            cur.next = prev
+            prev = cur
+            cur = tmp
+        }
+        this.head = prev
+        return this.printList();
+    }
 }
-const myLinkedList = new LinkedList(10)
+let myLinkedList = new LinkedList(10);
 myLinkedList.append(5)
-myLinkedList.append(16)
 myLinkedList.prepend(1)
 myLinkedList.insert(2, 99)
-myLinkedList.insert(20, 199)
 console.log(myLinkedList.printList())
-myLinkedList.remove(3)
-console.log(myLinkedList.printList())
-
+myLinkedList.reverse()
+console.log(myLinkedList.printList(), '1')
 console.log(myLinkedList)
-
-// 1 --> 10      5 --> 16
-//        \    / 
-//          99
