@@ -30,6 +30,7 @@ class LinkedList {
         this.tail.next = newNode
         this.tail = newNode
         this.length++
+        return this
     }
 
     prepend(value) {
@@ -37,10 +38,13 @@ class LinkedList {
             value: value,
             next: null
         }
-        let curHead = this.head;
-        this.head = newNode
-        this.head.next = curHead
+        // let curHead = this.head;
+        // this.head = newNode
+        // this.head.next = curHead
+        newNode.next = this.head;
+        this.head = newNode;
         this.length++
+        return this
     }
 }
 
