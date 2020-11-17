@@ -42,10 +42,29 @@ function meetingPlanner(slotsA, slotsB, dur) {
     }
     return []
   }
-  
   function helper(a, b, dur) {
     return Math.max(a[0], b[0]) + dur <= Math.min(a[1], b[1])
   }
 
 
+// another solution / simple 
+function meetingPlanner(slotsA, slotsB, dur) {
+  // your code goes here
+  let po1 = 0
+  let po2 = 0
   
+  while (po1 < slotsA.length && po2 < slotsB.length) {
+    start = Math.max(slotsA[po1][0], slotsB[po2][0])
+    end = Math.min(slotsA[po1][1], slotsB[po2][1])
+    
+    if (start + dur <= end) {
+      return [start, start+ dur]
+    }
+    if (slotsA[po1][1] < slotsB[po2][1]) {
+      po1++
+    } else {
+      po2++
+    }
+  }
+  return []
+}
