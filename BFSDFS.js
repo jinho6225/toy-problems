@@ -41,39 +41,11 @@ const depthFirstSearchPreOder_iterative = (root) => {
     
 }
 function breadthFirstSearch(root) {
-    let list = []
-    let queue = []
-    let cur = root;
-    queue.push(cur)
-    while (queue.length) {
-        let cur = queue.shift()
-        list.push(cur.val)
-        if (cur.left) queue.push(cur.left)
-        if (cur.right) queue.push(cur.right)
-    }
-    return list
-} //[9,  4,  20, 1, 6, 15, 170]
+
+} 
 function breadthFirstSearchR(root) {
-    let list = []
-    let queue = []
-    let cur = root
-    if (!root) return list;
-    queue.push(cur);
-    function helper() {
-        let cur = queue.shift();
-        if (!cur) return;
-        list.push(cur.val);
-        if (cur.left) {
-            queue.push(cur.left);
-        }
-        if (cur.right) {
-            queue.push(cur.right);
-        }
-        helper();
-    }
-    helper();
-    return list;
-} //[9,  4,  20, 1, 6, 15, 170]
+
+} 
 console.log(depthFirstSearchPreOder(tree));
 console.log(depthFirstSearchPreOder_iterative(tree));
 console.log(depthFirstSearchInOder(tree));
