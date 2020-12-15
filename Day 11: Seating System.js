@@ -195,3 +195,285 @@ function checkSeat(arr) {
 	return count
 }
 checkSeat(array)
+
+
+//part 2
+
+let aa = `L.LL.LL.LL
+LLLLLLL.LL
+L.L.L..L..
+LLLL.LL.LL
+L.LL.LL.LL
+L.LLLLL.LL
+..L.L.....
+LLLLLLLLLL
+L.LLLLLL.L
+L.LLLLL.LL`
+
+let array = aa.split('\n')
+
+function emptyhelper(arr, i, j) {
+	let x = 0
+	let y = 0
+	let height = arr.length-1;
+	let width = arr[i].length-1;
+	let zeroX = 0
+	let zeroY = 0
+	let empty = true
+
+	while(i+y > zeroY && j+x > zeroX) {
+		x--
+		y--	
+		if (i !== 0 && j !== 0 && arr[i+y][j+x] === '#') {
+            empty = false
+			break;
+		} else if (arr[i+y][j+x] === 'L') {
+			break;
+		}
+
+	}
+
+	x = 0
+	y = 0
+	while(i+y > zeroY) {
+		y--	
+		if (i !== 0 && arr[i+y][j] === '#') {
+            empty = false
+			break;
+		} else if (arr[i+y][j] === 'L') {
+			break;
+		}
+
+
+	}
+	x = 0
+	y = 0
+	while(i+y > zeroY && j+x < width) {
+		x++
+		y--		
+		if (i !== 0 &&  j !== arr[i].length-1 && arr[i+y][j+x] === '#') {
+            empty = false
+			break;
+		} else if (arr[i+y][j+x] === 'L') {
+			break;
+		}	
+
+	}
+	x = 0
+	y = 0
+	while(j+x > zeroX) {
+		x--		
+		if (j !== 0 && arr[i][j+x] === '#') {
+            empty = false
+			break;
+		} else if (arr[i][j+x] === 'L') {
+			break;
+		}		
+
+	}
+
+	x = 0
+	y = 0
+	while(j+x < width) {
+		x++	
+		if (j !== arr[i].length-1 && arr[i][j+x] === '#') {
+            empty = false
+			break;
+		} else if (arr[i][j+x] === 'L') {
+			break;
+		}		
+	}
+	x = 0
+	y = 0
+	while(i+y < height &&  j+x > zeroX) {
+		y++
+		x--	
+		if (i !== arr.length-1 && j !== 0 && arr[i+y][j+x] === '#') {
+            empty = false
+			break;
+		} else if (arr[i+y][j+x] === 'L') {
+			break;
+		}		
+
+	}
+	x = 0
+	y = 0
+	while(i+y < height) {
+	    y++	
+		if (i !== arr.length-1 && arr[i+y][j] === '#') {
+            empty = false
+			break;
+		} else if (arr[i+y][j] === 'L') {
+			break;
+		}		
+	}
+	x = 0
+	y = 0
+	while(i+y < height && j+x < width) {
+		x++
+		y++	
+		if (i !== arr.length-1 && j !== arr[i].length-1 && arr[i+y][j+x] === '#') {
+            empty = false
+			break;
+		} else if (arr[i+y][j+x] === 'L') {
+			break;
+		}		
+	}
+
+	if (empty) {
+		return '#'
+	} else {
+		return 'L'
+	}
+}
+
+
+function occupiedhelper(arr, i, j) {
+	let x = 0
+	let y = 0
+	let height = arr.length-1;
+	let width = arr[i].length-1;
+	let zeroX = 0
+	let zeroY = 0
+    let occupied = 0
+	
+	console.log(height, width)
+
+	while(i+y > zeroY && j+x > zeroX) {
+		x--
+		y--	
+		if (i !== 0 && j !== 0 && arr[i+y][j+x] === '#') {
+			occupied++
+			break;
+		} else if (arr[i+y][j+x] === 'L') {
+			break;
+		}
+
+	}
+
+	x = 0
+	y = 0
+	while(i+y > zeroY) {
+		y--	
+		if (i !== 0 && arr[i+y][j] === '#') {
+			occupied++
+			break;
+		} else if (arr[i+y][j] === 'L') {
+			break;
+		}	
+
+
+	}
+	x = 0
+	y = 0
+	while(i+y > zeroY && j+x < width) {
+		x++
+		y--		
+		if (i !== 0 &&  j !== arr[i].length-1 && arr[i+y][j+x] === '#') {
+			occupied++
+			break;
+		} else if (arr[i+y][j+x] === 'L') {
+			break;
+		}	
+
+	}
+	x = 0
+	y = 0
+	while(j+x > zeroX) {
+		x--		
+		if (j !== 0 && arr[i][j+x] === '#') {
+			occupied++
+			break;
+		} else if (arr[i][j+x] === 'L') {
+			break;
+		}	
+
+	}
+
+	x = 0
+	y = 0
+	while(j+x < width) {
+		x++	
+		if (j !== arr[i].length-1 && arr[i][j+x] === '#') {
+			occupied++
+			break;
+		} else if (arr[i][j+x] === 'L') {
+			break;
+		}	
+	}
+	x = 0
+	y = 0
+	while(i+y < height &&  j+x > zeroX) {
+		y++
+		x--	
+		if (i !== arr.length-1 && j !== 0 && arr[i+y][j+x] === '#') {
+			occupied++
+			break;
+		} else if (arr[i+y][j+x] === 'L') {
+			break;
+		}	
+
+	}
+	x = 0
+	y = 0
+	while(i+y < height) {
+	    y++	
+		if (i !== arr.length-1 && arr[i+y][j] === '#') {
+			occupied++
+			break;
+		} else if (arr[i+y][j] === 'L') {
+			break;
+		}	
+	}
+	x = 0
+	y = 0
+	while(i+y < height && j+x < width) {
+		x++
+		y++	
+		if (i !== arr.length-1 && j !== arr[i].length-1 && arr[i+y][j+x] === '#') {
+			occupied++
+			break;
+		} else if (arr[i+y][j+x] === 'L') {
+			break;
+		}	
+	}
+
+	if (occupied >= 5) {
+		return 'L'
+	} else {
+		return '#'
+	}
+
+}
+
+function checkSeat(arr) {
+	while(true) {
+		let prev = arr.join(',')
+		let newArr = arr.map(el => el.split(''))
+		let copied = JSON.parse(JSON.stringify(newArr))
+		for (let i = 0; i < newArr.length; i++) {
+			for (let j = 0; j < newArr[i].length; j++) {
+				if (arr[i][j] === 'L') {
+					copied[i][j] = emptyhelper(newArr, i, j)
+				} else if (arr[i][j] === '#') {
+					copied[i][j] = occupiedhelper(newArr, i, j)
+				}
+			}
+		}
+		arr = copied.map(el => el.join(''))
+        let cur = arr.join(',')
+		if (prev === cur) {
+			console.log('wow!!')
+			break;
+		}
+	}
+	let count = 0
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = 0; j < arr[i].length; j++) {
+            if (arr[i][j] === '#') count++
+		}
+	}
+	return count
+}
+checkSeat(array)
+
