@@ -36,9 +36,9 @@ Figure out where the navigation instructions lead. What is the Manhattan distanc
 
 let a = `F10
 N3
-F7
-R90
-F11`
+F7`
+// R90
+// F11`
 
 // N 
 // S 
@@ -153,3 +153,124 @@ function directionFn(cur, direc, val) {
 }
 
 navicate(array)
+
+
+
+//part 2
+function navicate2(arr) {
+	let obj = {
+		'E': 0,
+		'N': 0,
+		'W': 0,
+		'S': 0
+	}
+	let waypoint = {
+		'E': 10,
+		'N': 1
+	}
+	for (let i = 0; i < arr.length; i++) {
+		let key = arr[i][0]
+        let val = arr[i].substring(1)
+        console.log(key, val, i, 'here')
+		if (key in waypoint) {
+			waypoint[key] += Number(val)
+        } 
+        else if (key === 'F') {
+            for (let key in waypoint) {
+                obj[key] += waypoint[key] * Number(val)
+            } 
+        } 
+        else if (key === 'R') {
+			direction = directionFn2(waypoint, key, val)
+        } 
+        else if (key === 'L') {
+			direction = directionFn(direction, key, val)
+		}
+    }
+    console.log(obj)
+	let result = Math.abs(obj['E'] - obj['W']) + Math.abs(obj['N'] - obj['S'])
+	return result
+}
+
+function directionFn2(obj, direc, val) {
+    let result = {}
+    for (let key in obj) {
+        if (key == 'N') {
+            if (direc =='R') {
+                if (val == 90) {
+                    result['E'] = obj[key]
+                } else if (val == 180) {
+                    result['S'] = obj[key]
+                } else if (val == 270) {
+                    result['W'] = obj[key]
+                }
+            } else if (direc == 'L') {
+                if (val == 90) {
+                    result['W'] = obj[key]
+                } else if (val == 180) {
+                    result['S'] = obj[key]
+                } else if (val == 270) {
+                    result['E'] = obj[key]
+                }
+            }
+        } else if (key == 'E') {
+            if (direc =='R') {
+                if (val == 90) {
+                    result['S'] = obj[key]
+                } else if (val == 180) {
+                    result['W'] = obj[key]
+                } else if (val == 270) {
+                    result['N'] = obj[key]
+                }
+            } else if (direc == 'L') {
+                if (val == 90) {
+                    result['N'] = obj[key]
+                } else if (val == 180) {
+                    result['W'] = obj[key]
+                } else if (val == 270) {
+                    result['S'] = obj[key]				
+                }			
+            }
+        } else if (key == 'S') {
+            if (direc =='R') {
+                if (val == 90) {
+                    result['W'] = obj[key]
+                } else if (val == 180) {
+                    result['N'] = obj[key]
+                } else if (val == 270) {
+                    result['E'] = obj[key]
+                }
+            } else if (direc == 'L') {
+                if (val == 90) {
+                    result['E'] = obj[key]
+                } else if (val == 180) {
+                    result['N'] = obj[key]
+                } else if (val == 270) {
+                    result['W'] = obj[key]
+                }			
+            }
+        } else if (key == 'W') {
+            if (direc =='R') {
+                if (val == 90) {
+                    result['N'] = obj[key]
+                } else if (val == 180) {
+                    result['E'] = obj[key]
+                } else if (val == 270) {
+                    result['S'] = obj[key]				
+                }
+            } else if (direc == 'L') {
+                if (val == 90) {
+                    result['S'] = obj[key]				
+                } else if (val == 180) {
+                    result['E'] = obj[key]
+                } else if (val == 270) {
+                    result['N'] = obj[key]				
+                }			
+            }
+        }
+    }
+    console.log(result)
+	return result
+}
+
+console.log(navicate2(array))
