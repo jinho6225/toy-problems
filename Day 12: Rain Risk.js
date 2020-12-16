@@ -181,11 +181,13 @@ function navicate2(arr) {
             } 
         } 
         else if (key === 'R') {
-			direction = directionFn2(waypoint, key, val)
+			waypoint = directionFn2(waypoint, key, val)
         } 
         else if (key === 'L') {
-			direction = directionFn(direction, key, val)
-		}
+			waypoint = directionFn2(waypoint, key, val)
+		} else {
+            waypoint[key] = Number(val)
+        }
     }
     console.log(obj)
 	let result = Math.abs(obj['E'] - obj['W']) + Math.abs(obj['N'] - obj['S'])
