@@ -39,6 +39,7 @@ The earliest bus you could take is bus ID 59. It doesn't depart until timestamp 
 What is the ID of the earliest bus you can take to the airport multiplied by the number of minutes you'll need to wait for that bus?
 */
 
+//part 1
 let a = `1000390
 23,x,x,x,x,x,x,x,x,x,x,x,x,41,x,x,x,x,x,x,x,x,x,383,x,x,x,x,x,x,x,x,x,x,x,x,13,17,x,x,x,x,19,x,x,x,x,x,x,x,x,x,29,x,503,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,37`
 let array = a.split('\n')
@@ -61,4 +62,34 @@ function findBus(time, arr) {
     return diff * arr[idx]
 }
 
-console.log(findBus(timestamp, newSchedule))
+findBus(timestamp, newSchedule)
+
+
+//part 2
+let aa = '7,13,x,x,59,x,31,19' //1068788
+let cc = `1789,37,47,1889`
+
+
+let bb = "23,x,x,x,x,x,x,x,x,x,x,x,x,41,x,x,x,x,x,x,x,x,x,383,x,x,x,x,x,x,x,x,x,x,x,x,13,17,x,x,x,x,19,x,x,x,x,x,x,x,x,x,29,x,503,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,37" // 3417
+let arr = bb.split(',')
+//t = 17x
+//t+2 = 13y
+//t+3 = 19z
+//17x + 2 = 13y // 17x = 13y - 2
+//17x + 3 = 19z // 17x = 19z - 3
+function findTimeStamp (arr) {
+    debugger;
+    let number = Number(arr[0])
+    let acc = number
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] === 'x') continue;
+        console.log(i, Number(arr[i]))
+        while ((number + i) % Number(arr[i]) !== 0) {
+            number += acc
+        }
+        acc = acc * Number(arr[i])
+    }
+    return number
+}
+
+console.log(findTimeStamp(arr))
